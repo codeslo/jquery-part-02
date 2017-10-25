@@ -7,8 +7,7 @@ $(document).ready(function () {
                 $(this).css("background-color","pink");
                 $(this).attr("placeholder",fieldName + " is required.");
             }else{
-                console.log($(this).attr("name"));
-                console.log(isValid($(this).attr("name")));
+                isValid($(this).attr("name"));
             }
         });
     });
@@ -28,14 +27,28 @@ $(document).ready(function () {
         var checkPhoneNumber = new RegExp (/^(\+0?1\s)?\(?\d{3}\)?[\s.-]\d{3}[\s.-]\d{4}$/);
         var checkEmail = new RegExp (/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/);
         if(fieldName === "firstName" || fieldName === "lastName"){
-            return lettersOnly.test(fieldValue);
+            if(!lettersOnly.test(fieldValue)){
+                showValidationError(fieldName,"Letters only, min-length = 2");
+            }
         }else if(fieldName === "phoneNumber"){
-            return checkPhoneNumber.test(fieldValue);
+            if(!checkPhoneNumber.test(fieldValue)){
+                showValidationError(fieldName,"Invalid phone number");
+            }
         }else if(fieldName === "userEmail"){
-            return checkEmail.test(fieldValue);
+            if(!checkEmail.test(fieldValue)){
+                showValidationError(fieldName,"Invalid email address");
+            }
         }else{
             return;
         }
+    }
+
+
+    function showValidationError(fieldName,errorText){
+        var field = $("input[name="+fieldName+"]");
+        $(field).val("");
+        $(field).css("background-color","pink");
+        $(field).attr("placeholder",errorText);
     }
 
 });
