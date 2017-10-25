@@ -85,7 +85,7 @@ label{
     
 }
 
-.validated::placeholder{
+.validate-this::placeholder{
     color: red;
     font-style:italic;
 }
