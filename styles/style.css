@@ -74,11 +74,11 @@ label{
     text-align:center;
 }
 
-#submit-button{
+#submit-button, #clear-button{
     background-color: #1993DA;
     color:white;
     height:7%;
-    width:75px;
+    width:150px;
     padding:5px;
     font-size:18px;
     border-radius:10px;
